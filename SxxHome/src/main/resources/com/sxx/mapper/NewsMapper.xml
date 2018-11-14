@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxx.mapper.NewsMapper">
+	<select id="selectOne" parameterType="long" resultType="com.sxx.domain.News">
+		select 
+			id,title,context,imgUrl,viewCount,isRecommend,inputDate
+		form 
+			t_news where id=#{id}
+	</select>
+	<select id="selectAll" resultMap="newsResult">
+		select
+			n.id nid,
+			n.title ntitle,
+			n.context ncontext,
+			n.imgUrl nimgUrl,
+			n.viewCount nviewCount,
+			n.isRecommend nisRecommend,
+			n.inputDate ninputDate,
+			n.user_id nuserid,
+			nt.id ntid,
+			nt.name ntname
+		form
+			t_news n
+		left join t_newstype nt on n.type_id=nt.id 
+	</select>
+	<resultMap type="com.sxx.domain.News" id="newsResult">
+		<id column="nid" property="id"/>
+		<result column="ntitle" property="title" />
+		<result column="ncontext" property="context"/>
+		<result column="nimgUrl" property="imgUrl"/>
+		<result column="nviewCount" property="viewCount"/>
+		<result column="nisRecommend" property="isRecommend"/>
+		<result column="ninputDate" property="inputDate"/>
+		<result column="nuserid" property="user_id"/>
+		<association property="type_id" javaType="com.sxx.domain.NewsType">
+			<id column="ntid" property="id"/>
+			<result column="ntname" property="name"/>
+		</association>
+	</resultMap>
+	<delete id="delete" parameterType="long">
+		delete from t_news where id = #{id}
+	</delete>
+	<insert id="add" parameterType="com.sxx.domain.News">
+		insert into 
+			t_news(title,context,imgUrl,viewCount,isRecommend,inputDate,type_id,user_id)
+		values(#{title},#{context},#{imgUrl},#{viewCount},#{isRecommend},#{inputDate},#{type_id},#{user_id})	
+	</insert>
+	<update id="update" parameterType="com.sxx.domain.News">
+		update t_news set title=#{title},context=#{context},imgUrl=#{imgUrl},viewCount=#{viewCount},
+			isRecommend=#{isRecommend},inputDate=#{inputDate},user_id=#{user_id},type_id=#{type_id}
+		where id=#{id}
+	</update>
+</mapper>
