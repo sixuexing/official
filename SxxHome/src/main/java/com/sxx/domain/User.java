@@ -1,23 +1,15 @@
 package com.sxx.domain;
 
-import java.util.Date;
 
-public class User {
-	private Long id;
-	private String username;
+
+public class User extends BaseDomain{
+	private String name;
 	private String password;
-	private Date date = new Date();
-	public Long getId() {
-		return id;
+	public String getName() {
+		return name;
 	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getPassword() {
 		return password;
@@ -25,24 +17,17 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
-	}
-	public User(Long id, String username, String password, Date date) {
+	public User(String name, String password) {
 		super();
-		this.id = id;
-		this.username = username;
+		this.name = name;
 		this.password = password;
-		this.date = date;
 	}
 	public User() {
+		super();
 	}
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", date=" + date + "]";
+		return "User [name=" + name + ", password=" + password + "]";
 	}
 	
 	

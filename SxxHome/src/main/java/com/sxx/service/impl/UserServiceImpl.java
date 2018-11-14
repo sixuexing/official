@@ -1,33 +1,29 @@
 package com.sxx.service.impl;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sxx.domain.User;
 import com.sxx.mapper.UserMapper;
-import com.sxx.query.UserQuery;
 import com.sxx.service.IUserService;
 @Service
-public class UserServiceImpl implements IUserService{
+public class UserServiceImpl extends BaseServiceImpl<User> implements IUserService{
 	@Autowired
-	private  UserMapper userMapper;
-
-	@Override
-	public User get(Long id) {
-		
-		return userMapper.get(id);
-	}
-
+	private UserMapper userMapper;
+	
 	@Override
 	public User findByUsername(String userName) {
 		// TODO Auto-generated method stub
-		return null;
+		return userMapper.findByUsername(userName);
 	}
 
 	@Override
-	public User findByLoginUsername(UserQuery userQuery) {
+	public User login(String name, String password) {
 		// TODO Auto-generated method stub
-		return null;
+		return userMapper.loginFindNameAndPwd(name, password);
 	}
+	
+
 
 }

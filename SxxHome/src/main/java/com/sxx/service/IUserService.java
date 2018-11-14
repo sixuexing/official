@@ -1,13 +1,11 @@
 package com.sxx.service;
 
-import com.sxx.domain.User;
-import com.sxx.query.UserQuery;
+import org.apache.ibatis.annotations.Param;
 
-public interface IUserService {
-	User get(Long id);
+import com.sxx.domain.User;
+
+public interface IUserService extends BaseService<User>{
 
 	User findByUsername(String userName);
-
-	User findByLoginUsername(UserQuery userQuery);
-
+	User login(@Param("name")String name,@Param("password")String password);
 }

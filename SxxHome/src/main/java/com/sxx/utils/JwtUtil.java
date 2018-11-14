@@ -8,7 +8,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 
 public class JwtUtil {
-	static final String SECRET = "yshweb";
+	static final String SECRET = "sxx";
 
 	public static String generateToken(String username) {
 		HashMap<String,Object>map=new HashMap();

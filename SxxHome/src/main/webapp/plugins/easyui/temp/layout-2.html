@@ -7,28 +7,12 @@
             <a href="#" class="easyui-linkbutton" iconCls="icon-remove" onclick="remove()" plain="true">删除</a>
             <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="cancel()" plain="true">取消</a>
             <a href="#" class="easyui-linkbutton" iconCls="icon-reload" onclick="reload()" plain="true">刷新</a>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-print" onclick="openAdd()" plain="true">打印</a>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-help" onclick="openEdit()" plain="true">帮助</a>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-undo" onclick="remove()" plain="true">撤销</a>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-redo" onclick="cancel()" plain="true">重做</a>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-sum" onclick="reload()" plain="true">总计</a>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-back" onclick="reload()" plain="true">返回</a>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-tip" onclick="reload()" plain="true">提示</a>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-save" onclick="reload()" plain="true">保存</a>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-cut" onclick="reload()" plain="true">剪切</a>
         </div>
         <div class="wu-toolbar-search">
             <label>起始时间：</label><input class="easyui-datebox" style="width:100px">
             <label>结束时间：</label><input class="easyui-datebox" style="width:100px">
-            <label>用户组：</label> 
-            <select class="easyui-combobox" panelHeight="auto" style="width:100px">
-                <option value="0">选择用户组</option>
-                <option value="1">黄钻</option>
-                <option value="2">红钻</option>
-                <option value="3">蓝钻</option>
-            </select>
             <label>关键词：</label><input class="wu-text" style="width:100px">
-            <a href="#" class="easyui-linkbutton" iconCls="icon-search">开始检索</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-search">搜索</a>
         </div>
     </div>
     <!-- End of toolbar -->
@@ -39,16 +23,27 @@
 	<form id="wu-form-2" method="post">
         <table>
             <tr>
-                <td width="60" align="right">姓 名:</td>
-                <td><input type="text" name="name" class="wu-text" /></td>
+                <td width="60" align="right">新闻标题:</td>
+                <td><input type="text" name="title" class="wu-text" /></td>
             </tr>
             <tr>
-                <td align="right">邮 箱:</td>
-                <td><input type="text" name="email" class="wu-text" /></td>
+                <td align="right">图片:</td>
+                <td><input type="file" name="imgUrl"  /></td>
             </tr>
             <tr>
-                <td align="right">主 题:</td>
-                <td><input type="text" name="subject" class="wu-text" /></td>
+                <td align="right">是否推荐:</td>
+                <td>是<input type="radio" name="isRecommend" value="true" >
+                	否<input type="radio" name="isRecommend" value="false" ></td>
+            </tr>
+            <tr>
+                <td align="right">新闻类型:</td>
+                <td>
+                	<select id="cc" class="easyui-combobox" name="dept" style="width:100px;">
+                		<option>行业动态</option>
+                		<option>课程相关</option>
+                		<option>热点资讯</option>
+                	</select>
+                </td>
             </tr>
             <tr>
                 <td valign="top" align="right">内 容:</td>
@@ -64,7 +59,7 @@
 	*/
 	function add(){
 		$('#wu-form-2').form('submit', {
-			url:'',
+			url:'/news/saveNews',
 			success:function(data){
 				if(data){
 					$.messager.alert('信息提示','提交成功！','info');
@@ -134,7 +129,7 @@
 		$('#wu-dialog-2').dialog({
 			closed: false,
 			modal:true,
-            title: "添加信息",
+            title: "添加新闻",
             buttons: [{
                 text: '确定',
                 iconCls: 'icon-ok',
@@ -232,13 +227,12 @@
 		fit:true,
 		columns:[[
 			{ checkbox:true},
-			{ field:'productid',title:'productid',width:100,sortable:true},
-			{ field:'productname',title:'productname',width:180,sortable:true},
-			{ field:'unitcost',title:'unitcost',width:100},
-			{ field:'listprice',title:'listprice',width:100},
-			{ field:'attr1',title:'attr1',width:100},
-			{ field:'itemid',title:'itemid',width:100},
-			{ field:'status',title:'status',width:100}
+			{ field:'id',title:'ID',width:100,sortable:true},
+			{ field:'title',title:'新闻标题',width:180,sortable:true},
+			{ field:'viewCount',title:'浏览次数',width:100},
+			{ field:'isRecommend',title:'是否推荐',width:100},
+			{ field:'inputDate',title:'录入时间',width:100},
+			{ field:'type_id',title:'类型',width:100},
 		]]
 	});
 </script>

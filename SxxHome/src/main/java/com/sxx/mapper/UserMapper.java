@@ -1,7 +1,12 @@
 package com.sxx.mapper;
 
-import com.sxx.domain.User;
+import org.apache.ibatis.annotations.Mapper;
 
-public interface UserMapper {
-	User get(Long id);
+import com.sxx.domain.User;
+@Mapper
+public interface UserMapper extends BaseMapper<User> {
+	//登录使用
+	User findByUsername(String username);
+	
+	User loginFindNameAndPwd(String name,String password);
 }
