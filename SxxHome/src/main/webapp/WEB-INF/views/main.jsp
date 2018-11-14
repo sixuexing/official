@@ -6,12 +6,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="copyright" content="All Rights Reserved, Copyright (C) 2013, Wuyeguo, Ltd." />
 <title>思学行教育后台管理</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/plugins/easyui/easyui/1.3.4/themes/default/easyui.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/plugins/easyui/css/wu.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/plugins/easyui/css/icon.css" />
-<script type="text/javascript" src="${pageContext.request.contextPath }/plugins/easyui/js/jquery-1.8.0.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/plugins/easyui/easyui/1.3.4/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/plugins/easyui/easyui/1.3.4/locale/easyui-lang-zh_CN.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/easyui/easyui/1.3.4/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/easyui/css/wu.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/easyui/css/icon.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath }/easyui/js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/easyui/easyui/1.3.4/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/easyui/easyui/1.3.4/locale/easyui-lang-zh_CN.js"></script>
 </head>
 <body class="easyui-layout">
 	<!-- begin of header -->
@@ -30,12 +30,12 @@
     	<div class="easyui-accordion" data-options="border:false,fit:true"> 
         	<div title="快捷菜单" data-options="iconCls:'icon-application-cascade'" style="padding:5px;">  	
     			<ul class="easyui-tree wu-side-tree">
-                	<li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="${pageContext.request.contextPath }/plugins/easyui/temp/layout-2.html" iframe="0">新闻管理</a></li>
-                    <li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="${pageContext.request.contextPath }/plugins/easyui/temp/layout-3.html" iframe="0">用户管理</a></li>
-                    <li iconCls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="${pageContext.request.contextPath }/plugins/easyui/temp/layout-3.html" iframe="0">角色管理</a></li>
-                    <li iconCls="icon-book"><a href="javascript:void(0)" data-icon="icon-book" data-link="${pageContext.request.contextPath }/plugins/easyui/temp/layout-3.html" iframe="0">数据字典</a></li>
-                    <li iconCls="icon-cog"><a href="javascript:void(0)" data-icon="icon-cog" data-link="${pageContext.request.contextPath }/plugins/easyui/temp/layout-3.html" iframe="0">系统参数</a></li>
-                    <li iconCls="icon-application-osx-error"><a href="javascript:void(0)" data-icon="icon-application-osx-error" data-link="${pageContext.request.contextPath }/plugins/easyui/temp/layout-3.html" iframe="0">操作日志</a></li>
+                	<li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="${pageContext.request.contextPath }/easyui/temp/layout-2.html" iframe="0">新闻管理</a></li>
+                    <li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="${pageContext.request.contextPath }/easyui/temp/layout-3.html" iframe="0">用户管理</a></li>
+                    <li iconCls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="${pageContext.request.contextPath }/easyui/temp/layout-3.html" iframe="0">角色管理</a></li>
+                    <li iconCls="icon-book"><a href="javascript:void(0)" data-icon="icon-book" data-link="${pageContext.request.contextPath }/easyui/temp/layout-3.html" iframe="0">数据字典</a></li>
+                    <li iconCls="icon-cog"><a href="javascript:void(0)" data-icon="icon-cog" data-link="${pageContext.request.contextPath }/easyui/temp/layout-3.html" iframe="0">系统参数</a></li>
+                    <li iconCls="icon-application-osx-error"><a href="javascript:void(0)" data-icon="icon-application-osx-error" data-link="${pageContext.request.contextPath }/easyui/temp/layout-3.html" iframe="0">操作日志</a></li>
                 </ul>
             </div>
       
@@ -45,7 +45,7 @@
     <!-- begin of main -->
     <div class="wu-main" data-options="region:'center'">
         <div id="wu-tabs" class="easyui-tabs" data-options="border:false,fit:true">  
-            <div title="首页" data-options="href:'${pageContext.request.contextPath }/plugins/easyui/temp/layout-1.html',closable:false,iconCls:'icon-tip',cls:'pd3'"></div>
+            <div title="首页" data-options="href:'${pageContext.request.contextPath }/easyui/temp/layout-1.html',closable:false,iconCls:'icon-tip',cls:'pd3'"></div>
         </div>
     </div>
     <!-- end of main --> 
@@ -69,7 +69,7 @@
 		* Name 载入树形菜单 
 		*/
 		$('#wu-side-tree').tree({
-			url:'plugins/easyui/temp/menu.php',
+			url:'easyui/temp/menu.php',
 			cache:false,
 			onClick:function(node){
 				var url = node.attributes['url'];

@@ -32,10 +32,10 @@ public class WebSecurityConfig extends WebMvcConfigurerAdapter {
 		addInterceptor.excludePathPatterns("/Userlogin");
 		addInterceptor.excludePathPatterns("/loginout");
 		//静态资源放行
-		addInterceptor.excludePathPatterns("/public/css/*.css");
-		addInterceptor.excludePathPatterns("/public/images/*.jpg");
-		addInterceptor.excludePathPatterns("/public/images/*.png");
-		addInterceptor.excludePathPatterns("/public/ui/*.js");
+		addInterceptor.excludePathPatterns("/include/css/*.css");
+		addInterceptor.excludePathPatterns("/include/images/*.jpg");
+		addInterceptor.excludePathPatterns("/include/images/*.png");
+		addInterceptor.excludePathPatterns("/include/ui/*.js");
 		// 拦截配置
 		addInterceptor.addPathPatterns("/**");
 	}
