@@ -19,17 +19,17 @@
     <table id="wu-datagrid-2" class="easyui-datagrid" toolbar="#wu-toolbar-2"></table>
 </div>
 <!-- Begin of easyui-dialog -->
-<div id="wu-dialog-2" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save'" style="width:400px; padding:10px;">
+<div id="wu-dialog-2" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save'" style="width:1000px;height:650px; padding:10px;">
 	<form id="wu-form-2" method="post">
         <table>
             <tr>
                 <td width="60" align="right">新闻标题:</td>
                 <td><input type="text" name="title" class="wu-text" /></td>
             </tr>
-            <tr>
+            <!-- <tr>
                 <td align="right">图片:</td>
                 <td><input type="file" name="imgUrl"  /></td>
-            </tr>
+            </tr> -->
             <tr>
                 <td align="right">是否推荐:</td>
                 <td>是<input type="radio" name="isRecommend" value="true" >
@@ -47,22 +47,28 @@
             </tr>
             <tr>
                 <td valign="top" align="right">内 容:</td>
-                <td><textarea name="content" rows="6" class="wu-textarea" style="width:260px"></textarea></td>
+                <td>
+               <!-- ueditor编辑器 -->
+                <script id="container" name="context" type="text/plain"></script>   
+				</td>
             </tr>
         </table>
     </form>
 </div>
 <!-- End of easyui-dialog -->
 <script type="text/javascript">
+
 	/**
 	* Name 添加记录
 	*/
 	function add(){
+		
 		$('#wu-form-2').form('submit', {
 			url:'/news/saveNews',
 			success:function(data){
 				if(data){
 					$.messager.alert('信息提示','提交成功！','info');
+					$('#wu-datagrid-2').datagrid("reload");//刷新表格数据 
 					$('#wu-dialog-2').dialog('close');
 				}
 				else
@@ -101,15 +107,20 @@
 				var items = $('#wu-datagrid-2').datagrid('getSelections');
 				var ids = [];
 				$(items).each(function(){
-					ids.push(this.productid);	
-				});
-				//alert(ids);return;
+					ids.push(this.id);	
+				}); 
+				//alert(ids);
 				$.ajax({
-					url:'',
-					data:'',
+					type: "POST",
+					url:'news/deleteNews',
+					//data:{'ids':items},	
+					data: { "ids": ids},
+	                dataType: "json",
+	                traditional:true,
 					success:function(data){
 						if(data){
-							$.messager.alert('信息提示','删除成功！','info');		
+							$.messager.alert('信息提示','删除成功！','info');
+							$('#wu-datagrid-2').datagrid("reload");//删除后,刷新表格数据 
 						}
 						else
 						{
@@ -216,7 +227,7 @@
 	* Name 载入数据
 	*/
 	$('#wu-datagrid-2').datagrid({
-		url:'temp/datagrid.php',
+		url:'news/findAllNews',
 		loadFilter:pagerFilter,		
 		rownumbers:true,
 		singleSelect:false,
@@ -235,4 +246,14 @@
 			{ field:'type_id',title:'类型',width:100},
 		]]
 	});
+	<!-- 实例化编辑器 -->
+	  var ue = UE.getEditor('container');
+	  UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+	  UE.Editor.prototype.getActionUrl = function(action) {
+    if (action == "uploadimage" || action == "uploadscrawl" || action == "listimage" || action == "catchimage") {
+        return "${root}/upload/ue"
+    } else {
+      return this._bkGetActionUrl.call(this, action);
+    }
+  }
 </script>

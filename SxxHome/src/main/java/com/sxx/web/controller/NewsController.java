@@ -1,13 +1,13 @@
 package com.sxx.web.controller;
 
+
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sxx.domain.News;
@@ -22,13 +22,12 @@ public class NewsController {
 	
 	@RequestMapping("/findAllNews")
 	@ResponseBody
-	public List<News> findAllNews(HttpServletRequest request,HttpServletResponse response){
+	public List<News> findAllNews(){
 		return newsService.getAll();
 	}
 	@RequestMapping("/saveNews")
 	@ResponseBody
 	public AjaxResult saveNews(News news) {
-		System.out.println("保存新闻");
 		try {
 			if (null != news) {
 				newsService.save(news);
@@ -39,4 +38,23 @@ public class NewsController {
 		}
 		return new AjaxResult("添加失败，请联系管理员");
 	}
+	@RequestMapping("/deleteNews")
+	@ResponseBody
+	public AjaxResult deleteNews(@RequestParam(value = "ids") long[] ids) {
+		if(null != ids) {
+			for (long lid : ids) {
+				newsService.delete(lid);
+			}
+			return new AjaxResult();
+		}
+		return new AjaxResult("删除失败，请联系管理员");
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }

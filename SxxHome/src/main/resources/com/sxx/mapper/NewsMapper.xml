@@ -5,7 +5,7 @@
 	<select id="selectOne" parameterType="long" resultType="com.sxx.domain.News">
 		select 
 			id,title,context,imgUrl,viewCount,isRecommend,inputDate
-		form 
+		from 
 			t_news where id=#{id}
 	</select>
 	<select id="selectAll" resultMap="newsResult">
@@ -20,9 +20,9 @@
 			n.user_id nuserid,
 			nt.id ntid,
 			nt.name ntname
-		form
+		from
 			t_news n
-		left join t_newstype nt on n.type_id=nt.id 
+		left join t_newstype nt on n.type_id=nt.id
 	</select>
 	<resultMap type="com.sxx.domain.News" id="newsResult">
 		<id column="nid" property="id"/>
@@ -32,11 +32,11 @@
 		<result column="nviewCount" property="viewCount"/>
 		<result column="nisRecommend" property="isRecommend"/>
 		<result column="ninputDate" property="inputDate"/>
-		<result column="nuserid" property="user_id"/>
-		<association property="type_id" javaType="com.sxx.domain.NewsType">
+		<result column="nuserid" property="user_id"/> 
+		<association property="type" javaType="com.sxx.domain.NewsType">
 			<id column="ntid" property="id"/>
 			<result column="ntname" property="name"/>
-		</association>
+		</association> 
 	</resultMap>
 	<delete id="delete" parameterType="long">
 		delete from t_news where id = #{id}

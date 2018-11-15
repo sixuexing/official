@@ -2,6 +2,10 @@ package com.sxx.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class News extends BaseDomain {
 		//新闻标题
 		private String title;
@@ -15,10 +19,26 @@ public class News extends BaseDomain {
 		private Integer viewCount;
 		//是否推荐新闻
 		private Boolean isRecommend;
+		//类型id
+		private Long type_id;
+		
+		private Long user_id;
 		//新闻类型
 		private NewsType type; 
 		//新闻录入人(自动生成,从HttpSession获取登录用户的信息)
 		private User user;
+		public Long getType_id() {
+			return type_id;
+		}
+		public void setType_id(Long type_id) {
+			this.type_id = type_id;
+		}
+		public Long getUser_id() {
+			return user_id;
+		}
+		public void setUser_id(Long user_id) {
+			this.user_id = user_id;
+		}
 		public String getTitle() {
 			return title;
 		}
@@ -37,9 +57,11 @@ public class News extends BaseDomain {
 		public void setImgUrl(String imgUrl) {
 			this.imgUrl = imgUrl;
 		}
+		@JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
 		public Date getInputDate() {
 			return inputDate;
 		}
+		@DateTimeFormat(pattern="yyyy-MM-dd")
 		public void setInputDate(Date inputDate) {
 			this.inputDate = inputDate;
 		}

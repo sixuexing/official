@@ -12,6 +12,13 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/easyui/js/jquery-1.8.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/easyui/easyui/1.3.4/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/easyui/easyui/1.3.4/locale/easyui-lang-zh_CN.js"></script>
+ <script type="text/javascript" src="${pageContext.request.contextPath }/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="${pageContext.request.contextPath }/ueditor/ueditor.all.js"></script> 
+<!--引入引入kindeditor编辑器相关文件-->
+   <%--  <link rel="stylesheet" href="${pageContext.request.contextPath}/kindeditor/themes/default/default.css"/>
+    <script charset="utf-8" src="${pageContext.request.contextPath}/kindeditor/kindeditor-all.js"></script>
+    <script charset="utf-8" src="${pageContext.request.contextPath}/kindeditor/lang/zh_CN.js"></script> --%>
 </head>
 <body class="easyui-layout">
 	<!-- begin of header -->
