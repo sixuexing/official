@@ -1,59 +1,66 @@
 <div class="easyui-layout" data-options="fit:true">
-    <!-- Begin of toolbar -->
-    <div id="wu-toolbar-2">
-        <div class="wu-toolbar-button">
-            <a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="openAdd()" plain="true">添加</a>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-edit" onclick="openEdit()" plain="true">修改</a>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-remove" onclick="remove()" plain="true">删除</a>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="cancel()" plain="true">取消</a>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-reload" onclick="reload()" plain="true">刷新</a>
-        </div>
-        <div class="wu-toolbar-search">
-            <label>起始时间：</label><input class="easyui-datebox" style="width:100px">
-            <label>结束时间：</label><input class="easyui-datebox" style="width:100px">
-            <label>关键词：</label><input class="wu-text" style="width:100px">
-            <a href="#" class="easyui-linkbutton" iconCls="icon-search">搜索</a>
-        </div>
-    </div>
-    <!-- End of toolbar -->
-    <table id="wu-datagrid-2" class="easyui-datagrid" toolbar="#wu-toolbar-2"></table>
+	<!-- Begin of toolbar -->
+	<div id="wu-toolbar-2">
+		<div class="wu-toolbar-button">
+			<a href="#" class="easyui-linkbutton" iconCls="icon-add"
+				onclick="openAdd()" plain="true">添加</a> <a href="#"
+				class="easyui-linkbutton" iconCls="icon-edit" onclick="openEdit()"
+				plain="true">修改</a> <a href="#" class="easyui-linkbutton"
+				iconCls="icon-remove" onclick="remove()" plain="true">删除</a> <a
+				href="#" class="easyui-linkbutton" iconCls="icon-cancel"
+				onclick="cancel()" plain="true">取消</a> <a href="#"
+				class="easyui-linkbutton" iconCls="icon-reload" onclick="reload()"
+				plain="true">刷新</a>
+		</div>
+		<div class="wu-toolbar-search">
+			<label>起始时间：</label><input class="easyui-datebox"
+				style="width: 100px"> <label>结束时间：</label><input
+				class="easyui-datebox" style="width: 100px"> <label>关键词：</label><input
+				class="wu-text" style="width: 100px"> <a href="#"
+				class="easyui-linkbutton" iconCls="icon-search">搜索</a>
+		</div>
+	</div>
+	<!-- End of toolbar -->
+	<table id="wu-datagrid-2" class="easyui-datagrid"
+		toolbar="#wu-toolbar-2"></table>
 </div>
 <!-- Begin of easyui-dialog -->
-<div id="wu-dialog-2" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save'" style="width:1000px;height:650px; padding:10px;">
+<div id="wu-dialog-2" class="easyui-dialog"
+	data-options="closed:true,iconCls:'icon-save'"
+	style="width: 1000px; height: 650px; padding: 10px;">
 	<form id="wu-form-2" method="post">
-        <table>
-            <tr>
-                <td width="60" align="right">新闻标题:</td>
-                <td><input type="text" name="title" class="wu-text" /></td>
-            </tr>
-            <!-- <tr>
+		<table>
+			<tr>
+				<td width="60" align="right">新闻标题:</td>
+				<td><input type="text" name="title" class="wu-text" /></td>
+			</tr>
+			<!-- <tr>
                 <td align="right">图片:</td>
                 <td><input type="file" name="imgUrl"  /></td>
             </tr> -->
-            <tr>
-                <td align="right">是否推荐:</td>
-                <td>是<input type="radio" name="isRecommend" value="true" >
-                	否<input type="radio" name="isRecommend" value="false" ></td>
-            </tr>
-            <tr>
-                <td align="right">新闻类型:</td>
-                <td>
-                	<select id="cc" class="easyui-combobox" name="dept" style="width:100px;">
-                		<option>行业动态</option>
-                		<option>课程相关</option>
-                		<option>热点资讯</option>
-                	</select>
-                </td>
-            </tr>
-            <tr>
-                <td valign="top" align="right">内 容:</td>
-                <td>
-               <!-- ueditor编辑器 -->
-                <script id="container" name="context" type="text/plain"></script>   
+			<tr>
+				<td align="right">是否推荐:</td>
+				<td>是<input type="radio" name="isRecommend" value="true">
+					否<input type="radio" name="isRecommend" value="false"></td>
+			</tr>
+			<tr>
+				<td align="right">新闻类型:</td>
+				<td><select id="cc" class="easyui-combobox" name="dept"
+					style="width: 100px;">
+						<option>行业动态</option>
+						<option>课程相关</option>
+						<option>热点资讯</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td valign="top" align="right">内 容:</td>
+				<td>
+					<!-- ueditor编辑器 --> <script id="container" name="context"
+						type="text/plain"></script>
 				</td>
-            </tr>
-        </table>
-    </form>
+			</tr>
+		</table>
+	</form>
 </div>
 <!-- End of easyui-dialog -->
 <script type="text/javascript">
@@ -250,10 +257,10 @@
 	  var ue = UE.getEditor('container');
 	  UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
 	  UE.Editor.prototype.getActionUrl = function(action) {
-    if (action == "uploadimage" || action == "uploadscrawl" || action == "listimage" || action == "catchimage") {
-        return "${root}/upload/ue"
-    } else {
-      return this._bkGetActionUrl.call(this, action);
-    }
+	    if (action == "uploadimage" || action == "uploadscrawl" || action == "listimage" || action == "catchimage") {
+	        return "${root}/upload/ue"
+	    } else {
+	      return this._bkGetActionUrl.call(this, action);
+	    }
   }
 </script>
